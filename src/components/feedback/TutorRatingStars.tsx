@@ -7,7 +7,7 @@ type Metric = {
   id: string;
   name: string;
   rating: number;
-  image: string;
+  cover: string;
   description: string;
 };
 
@@ -16,29 +16,33 @@ const metrics: Metric[] = [
     id: "clarity",
     name: "Claridad al explicar",
     rating: 4,
-    image: "/images/metrics/clarity.jpg",
-    description: "El alumnado propuso esta calificación para su desempeño en la claridad con la que explica los temas.",
+    cover: "linear-gradient(135deg, rgba(217,131,91,0.95), rgba(233,196,106,0.95))",
+    description:
+      "El alumnado valora que los temas se explican con estructura, ejemplos claros y seguimiento en cada sesion.",
   },
   {
     id: "patience",
     name: "Paciencia",
     rating: 5,
-    image: "/images/metrics/patience.jpg",
-    description: "El alumnado propuso esta calificación para su desempeño en la paciencia al resolver dudas.",
+    cover: "linear-gradient(135deg, rgba(91,142,125,0.95), rgba(38,70,83,0.95))",
+    description:
+      "Refleja la calma y disponibilidad para resolver dudas sin perder el ritmo del aprendizaje.",
   },
   {
     id: "knowledge",
     name: "Dominio del tema",
     rating: 4,
-    image: "/images/metrics/knowledge.jpg",
-    description: "El alumnado propuso esta calificación para su desempeño en el dominio del contenido académico.",
+    cover: "linear-gradient(135deg, rgba(38,70,83,0.95), rgba(93,126,138,0.95))",
+    description:
+      "Evalua la seguridad con la que se abordan conceptos, ejercicios y aplicaciones practicas.",
   },
   {
     id: "helpfulness",
-    name: "Utilidad de la sesión",
+    name: "Utilidad de la sesion",
     rating: 5,
-    image: "/images/metrics/helpfulness.jpg",
-    description: "El alumnado propuso esta calificación para la utilidad general de sus sesiones de tutoría.",
+    cover: "linear-gradient(135deg, rgba(233,196,106,0.95), rgba(244,207,190,0.95))",
+    description:
+      "Resume que tan valiosa fue la tutoria para avanzar en objetivos academicos concretos.",
   },
 ];
 
@@ -46,50 +50,38 @@ export default function TutorRatingStars() {
   const [activeMetric, setActiveMetric] = useState(metrics[0]);
 
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-col gap-4 lg:flex-row">
+      <div className="app-card-strong relative w-full max-w-xl overflow-hidden">
+        <div className="h-32" style={{ background: activeMetric.cover }} />
 
-      {/* CARD */}
-      <div className="relative w-full max-w-xl bg-white rounded-xl shadow overflow-hidden">
-
-        {/* Imagen mitad superior */}
-        <div
-          className="h-32 bg-cover bg-center"
-          style={{ backgroundImage: `url(${activeMetric.image})` }}
-        />
-
-        {/* Contenido */}
-        <div className="p-6 space-y-3">
-
-          <h3 className="text-lg font-semibold text-gray-800">
+        <div className="space-y-3 p-6">
+          <h3 className="text-lg font-semibold text-[color:var(--primary)]">
             {activeMetric.name}
           </h3>
 
           <RatingStars value={activeMetric.rating} readonly />
 
-          <p className="text-sm text-gray-500 leading-relaxed">
+          <p className="text-sm leading-relaxed app-muted">
             {activeMetric.description}
           </p>
-
         </div>
       </div>
 
-      {/* BOTONES */}
-      <div className="flex flex-col gap-2">
-
+      <div className="flex gap-2 lg:flex-col">
         {metrics.map((metric) => {
           const active = metric.id === activeMetric.id;
 
           return (
             <button
               key={metric.id}
+              type="button"
               onClick={() => setActiveMetric(metric)}
               className={`
-                w-10 h-10 rounded-lg font-semibold
-                transition
+                flex h-11 w-11 items-center justify-center rounded-2xl text-lg font-semibold transition
                 ${
                   active
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                    ? "bg-[color:var(--primary)] text-white shadow-lg shadow-[rgba(38,70,83,0.18)]"
+                    : "bg-white/80 text-[color:var(--primary)] hover:bg-[color:var(--primary-soft)]"
                 }
               `}
             >
@@ -97,9 +89,7 @@ export default function TutorRatingStars() {
             </button>
           );
         })}
-
       </div>
-
     </div>
   );
 }

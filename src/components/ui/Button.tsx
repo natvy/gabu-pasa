@@ -1,10 +1,3 @@
-// src/components/ui/Button.tsx
-
-// Este es un componente de botón reutilizable que acepta 
-// diferentes variantes y tamaños.
-// Se extiende de las propiedades estándar de un botón HTML, 
-// lo que permite usar cualquier atributo válido de un botón.
-
 import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -20,19 +13,23 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center font-medium rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
+    "inline-flex items-center justify-center rounded-full font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent disabled:cursor-not-allowed disabled:opacity-50";
 
   const variantClasses = {
-    primary: "bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-500",
-    secondary: "bg-gray-500 text-white hover:bg-gray-600 focus:ring-gray-500",
-    danger: "bg-red-500 text-white hover:bg-red-600 focus:ring-red-500",
-    ghost: "bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-300",
+    primary:
+      "bg-[color:var(--primary)] text-white shadow-lg shadow-[rgba(38,70,83,0.18)] hover:-translate-y-0.5 hover:bg-[color:var(--primary-strong)] focus:ring-[color:var(--primary)]",
+    secondary:
+      "bg-[color:var(--secondary)] text-white shadow-lg shadow-[rgba(217,131,91,0.18)] hover:-translate-y-0.5 hover:bg-[color:var(--secondary-strong)] focus:ring-[color:var(--secondary)]",
+    danger:
+      "bg-[#c75c5c] text-white shadow-lg shadow-[rgba(199,92,92,0.18)] hover:-translate-y-0.5 hover:bg-[#a94d4d] focus:ring-[#c75c5c]",
+    ghost:
+      "border border-[color:var(--border)] bg-white/65 text-[color:var(--primary)] hover:bg-[color:var(--primary-soft)] focus:ring-[color:var(--primary-soft)]",
   };
 
   const sizeClasses = {
-    sm: "px-2 py-1 text-sm",
-    md: "px-4 py-2",
-    lg: "px-6 py-3 text-lg",
+    sm: "px-3 py-1.5 text-sm",
+    md: "px-4 py-2.5 text-sm",
+    lg: "px-6 py-3 text-base",
   };
 
   return (

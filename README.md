@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gabu Pasa
 
-## Getting Started
+Plataforma web de tutorias academicas construida con `Next.js`, enfocada en conectar estudiantes con tutores mediante una experiencia clara, visual y facil de navegar.
 
-First, run the development server:
+## Resumen
+
+`Gabu Pasa` es un prototipo frontend que presenta dos recorridos principales dentro del mismo sistema:
+
+- `Estudiante`: buscar tutores, revisar archivos, consultar sesiones, chatear y calificar la experiencia recibida.
+- `Tutor`: gestionar estudiantes, visualizar metricas, compartir materiales, administrar horarios, iniciar videollamadas y evaluar a sus alumnos.
+
+El proyecto esta pensado como una demostracion navegable de producto. Actualmente trabaja con `mocks` locales para simular la informacion mientras se define una futura integracion con backend.
+
+## Que incluye la demo
+
+### Vista estudiante
+
+- `Dashboard` con resumen general, progreso, actividad reciente y proximas sesiones.
+- `Buscar tutores` con filtros por materia y busqueda por texto.
+- `Tus tutores` para consultar perfiles disponibles.
+- `Mensajeria` con lista de conversaciones y ventana de chat.
+- `Archivos` para explorar materiales compartidos.
+- `Perfil` con informacion personal y academica.
+- `Calificacion al tutor` para evaluar la calidad de la asesoria.
+
+### Vista tutor
+
+- `Dashboard` con metricas, solicitudes, calendario y alumnado reciente.
+- `Buscar estudiantes` con filtros y solicitudes entrantes.
+- `Horarios` para configurar disponibilidad y ver recomendaciones.
+- `Videollamadas` con seleccion de estudiante e historial.
+- `Archivos compartidos` para materiales y notas academicas.
+- `Mensajeria` para seguimiento con estudiantes.
+- `Perfil` con datos personales, materias y habilidades.
+- `Calificacion al alumno` para registrar retroalimentacion.
+
+## Tecnologias
+
+- `Next.js 16`
+- `React 19`
+- `TypeScript`
+- `Tailwind CSS 4`
+- `ESLint`
+- `react-calendar`
+
+## Estructura del proyecto
+
+```text
+src/
+  app/
+    (student)/            # rutas del estudiante
+    (tutor)/              # rutas del tutor
+    globals.css           # estilos globales y sistema visual
+    layout.tsx            # layout raiz
+    page.tsx              # portada / acceso a ambas vistas
+  components/
+    availability/         # horario y disponibilidad
+    calendar/             # agenda y eventos
+    cards/                # tarjetas reutilizables
+    chats/                # mensajeria
+    dashboard/            # widgets de inicio
+    feedback/             # rating y progreso
+    filters/              # filtros de busqueda y archivos
+    layout/               # sidebar y dashboard layout
+    profile/              # informacion de perfil
+    rating/               # formularios de evaluacion
+    search_student/       # busqueda de tutores
+    tutors/               # listado de tutores
+    ui/                   # componentes base
+    videocall/            # historial de llamadas
+  mocks/                  # datos simulados para demo
+  types/                  # tipos e interfaces
+public/
+  recursos_visuales/      # iconografia e imagenes del proyecto
+```
+
+## Ejecucion local
+
+1. Instala dependencias:
+
+```bash
+npm install
+```
+
+2. Inicia el entorno de desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Abre en el navegador:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts disponibles
 
-## Learn More
+- `npm run dev`: inicia el proyecto en modo desarrollo.
+- `npm run build`: genera la version de produccion.
+- `npm run start`: levanta la build de produccion.
+- `npm run lint`: valida estilo y calidad basica de codigo.
 
-To learn more about Next.js, take a look at the following resources:
+## Fuente de datos actual
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+El proyecto usa archivos `mock` dentro de `src/mocks` para representar:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- tutores
+- estudiantes
+- conversaciones y mensajes
+- sesiones y eventos
+- archivos academicos
+- historial de llamadas
 
-## Deploy on Vercel
+Esto permite mostrar el flujo completo de la interfaz aun sin backend conectado.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Estado actual
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- La aplicacion ya cuenta con navegacion funcional entre ambos perfiles.
+- El diseno esta orientado a presentacion y demo de producto.
+- El sistema visual fue unificado para mantener una paleta mas armonica y consistente.
+- Aun hay componentes que funcionan como prototipo de interfaz y pueden evolucionar hacia integracion real.
+
+## Oportunidades de mejora
+
+- Conectar autenticacion y manejo de sesiones reales.
+- Integrar una API para tutores, estudiantes, mensajes y archivos.
+- Persistir historial de chat, calificaciones y disponibilidad.
+- Reemplazar mocks por datos dinamicos.
+- Agregar pruebas y validaciones de formularios mas robustas.
+
+## Autor
+
+Proyecto trabajado como propuesta de plataforma academica :> Hecho por el gabuequipo. 
+Trayectoria de programacion estructurada por Natalia :> 

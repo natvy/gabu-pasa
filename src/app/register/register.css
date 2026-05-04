@@ -1,0 +1,271 @@
+.register-wrap {
+  max-width: 960px;
+}
+
+.register-form-side {
+  overflow-y: auto;
+  max-height: 90vh;
+  padding-top: 13rem;
+}
+
+/* ── Step container ── */
+.register-step {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.step-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.25rem;
+}
+
+.step-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-strong);
+  letter-spacing: -0.02em;
+}
+
+.step-header p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.step-pill {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  background: var(--surface-accent);
+  color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Grid de campos ── */
+.fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .fields-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Textarea ── */
+.field-textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+/* ── Tags ── */
+.tag-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tag-input-row .field-input {
+  flex: 1;
+}
+
+.btn-tag-add {
+  width: 38px;
+  height: 38px;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--surface-accent);
+  color: var(--accent);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.btn-tag-add:hover {
+  background: var(--accent-soft);
+}
+
+.tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--surface-accent);
+  color: var(--accent);
+  border: 1px solid rgba(91, 142, 125, 0.2);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tag button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 14px;
+  line-height: 1;
+  padding: 0;
+  opacity: 0.7;
+}
+
+.tag button:hover {
+  opacity: 1;
+}
+
+/* ── Skills ── */
+.skill-input-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.skill-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.skill-level-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 28px;
+}
+
+.skill-slider {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+.skills-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.skill-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--surface-accent);
+  border: 1px solid rgba(91, 142, 125, 0.18);
+  border-radius: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.skill-bar-wrap {
+  flex: 1;
+  height: 4px;
+  background: rgba(91, 142, 125, 0.18);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.skill-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.skill-pct {
+  font-size: 11px;
+  opacity: 0.7;
+  min-width: 30px;
+  text-align: right;
+}
+
+.skill-chip button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 14px;
+  opacity: 0.7;
+  padding: 0;
+}
+
+.skill-chip button:hover {
+  opacity: 1;
+}
+
+/* ── Step indicators (hero) ── */
+.step-indicators {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.step-dot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.step-dot span {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(245, 248, 250, 0.6);
+  transition: all 0.3s;
+}
+
+.step-dot.active span {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: white;
+}
+
+.step-dot p {
+  font-size: 10px;
+  color: rgba(245, 248, 250, 0.6);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.step-dot.active p {
+  color: rgba(245, 248, 250, 0.9);
+}
+
+.step-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin-bottom: 18px;
+}

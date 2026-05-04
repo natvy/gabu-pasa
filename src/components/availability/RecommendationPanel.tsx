@@ -2,24 +2,21 @@
 
 export default function RecommendationPanel() {
   return (
-    <div className="bg-white p-6 rounded-xl shadow-md space-y-6 max-w-full">
-      
-      {/* Header */}
-      <div className="flex items-center gap-6">
-        <div className="w-28 h-28 rounded-full border-8 border-blue-900 flex items-center justify-center">
-          <div className="w-4 h-16 bg-blue-900 rounded" />
+    <div className="app-card-soft h-full space-y-6 p-6">
+      <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+        <div className="flex h-28 w-28 items-center justify-center rounded-full border-[10px] border-[color:var(--primary)]">
+          <div className="h-16 w-4 rounded bg-[color:var(--secondary)]" />
         </div>
 
-        <p className="text-sm text-gray-700">
-          Seleccione las horas que vea recomendable
+        <p className="text-sm app-muted">
+          Selecciona las horas que veas recomendables.
         </p>
       </div>
 
-      {/* Leyenda */}
       <div className="space-y-3">
-        <Legend label="Matutino" color="bg-blue-400" />
-        <Legend label="Vespertino" color="bg-yellow-400" />
-        <Legend label="Cualquier hora" color="bg-lime-400" />
+        <Legend label="Matutino" color="bg-[color:var(--primary)]" />
+        <Legend label="Vespertino" color="bg-[color:var(--secondary)]" />
+        <Legend label="Cualquier hora" color="bg-[color:var(--accent)]" />
       </div>
     </div>
   );
@@ -28,7 +25,7 @@ export default function RecommendationPanel() {
 function Legend({ label, color }: { label: string; color: string }) {
   return (
     <div className="flex items-center gap-4">
-      <span className="text-sm text-gray-600 w-28 text-right">{label}</span>
+      <span className="w-28 text-sm app-muted sm:text-right">{label}</span>
       <div className={`h-4 flex-1 rounded-lg ${color}`} />
     </div>
   );

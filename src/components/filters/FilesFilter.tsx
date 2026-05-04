@@ -16,10 +16,10 @@ export default function FilesFilters({
   tutors,
 }: Props) {
   return (
-    <section className="bg-amber-300 p-4 rounded-xl shadow text-gray-700">
-      <div className="grid grid-cols-2 gap-4">
+    <section className="app-card-soft p-4">
+      <div className="grid gap-4 md:grid-cols-2">
         <select
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+          className="w-full rounded-2xl border border-[color:var(--border)] bg-white/85 p-3 text-sm text-[color:var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[color:var(--primary-soft)]"
           value={selectedTutor}
           onChange={(e) => setSelectedTutor(e.target.value)}
         >
@@ -32,7 +32,7 @@ export default function FilesFilters({
         </select>
 
         <select
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+          className="w-full rounded-2xl border border-[color:var(--border)] bg-white/85 p-3 text-sm text-[color:var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[color:var(--primary-soft)]"
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
         >

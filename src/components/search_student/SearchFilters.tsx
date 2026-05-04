@@ -14,7 +14,6 @@ export default function SearchFilters({
   setQuery,
   setSelectedSubject,
 }: Props) {
-
   const subjectFilter = {
     title: "Materias",
     options: subjects.map((subject) => ({
@@ -24,8 +23,7 @@ export default function SearchFilters({
   };
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow space-y-4">
-
+    <div className="app-card-soft space-y-4 p-4 md:p-5">
       <FilterPanel
         filters={[subjectFilter]}
         onChange={(_, value) => setSelectedSubject(value)}
@@ -37,7 +35,6 @@ export default function SearchFilters({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-
     </div>
   );
 }

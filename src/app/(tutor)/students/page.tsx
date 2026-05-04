@@ -21,8 +21,8 @@ export default function SearchStudent() {
 
     const matchesQuery = query
       ? student.name.toLowerCase().includes(query.toLowerCase()) ||
-        student.interests.some((s) =>
-          s.toLowerCase().includes(query.toLowerCase()),
+        student.interests.some((interest) =>
+          interest.toLowerCase().includes(query.toLowerCase())
         )
       : true;
 
@@ -38,24 +38,15 @@ export default function SearchStudent() {
   };
 
   return (
-    <div className="space-y-6 px-4 md:px-8">
+    <div className="app-page">
+      <PageHeader
+        title="BUSCAR ESTUDIANTES"
+        subtitle="Encuentra a tus estudiantes de forma rapida y sencilla."
+      />
 
-      {/* HEADER */}
-      <section>
-        <PageHeader
-          title="BUSCAR ESTUDIANTES"
-          subtitle="Encuentra a tus estudiantes de forma rápida y sencilla."
-        />
-      </section>
-
-      {/* GRID PRINCIPAL - RESPONSIVO */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-        {/* 2/3 - BUSCADOR + FILTRO + RESULTADOS */}
-        <section className="lg:col-span-2 space-y-6">
-
-          {/* Filtros + Buscador */}
-          <div className="bg-white p-4 rounded-xl shadow-md space-y-4">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)]">
+        <section className="min-w-0 space-y-6">
+          <div className="app-card-soft space-y-4 p-4 md:p-5">
             <FilterPanel
               filters={[subjectFilter]}
               onChange={(_, value) => setSelectedSubject(value)}
@@ -68,12 +59,11 @@ export default function SearchStudent() {
             />
           </div>
 
-          {/* Resultados */}
           <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-gray-800">Resultados</h2>
+            <h2 className="app-section-heading">Resultados</h2>
 
             {filteredStudents.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {filteredStudents.map((student) => (
                   <CardAlumno
                     key={student.id}
@@ -85,31 +75,29 @@ export default function SearchStudent() {
                 ))}
               </div>
             ) : (
-              <div className="bg-white p-6 rounded-xl shadow-md text-gray-500">
+              <div className="app-card p-6 text-sm app-muted">
                 No se encontraron estudiantes con esos criterios.
               </div>
             )}
           </div>
         </section>
 
-        {/* 1/3 - SOLICITUDES */}
-        <aside className="lg:col-span-1">
-          <div className="bg-white p-4 rounded-xl shadow-md space-y-4 max-h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
-            <h3 className="font-semibold text-gray-800">Solicitudes de alumnos</h3>
+        <aside className="min-w-0 xl:sticky xl:top-8">
+          <div className="app-card app-scrollbar space-y-4 overflow-y-auto p-4 md:p-5 xl:max-h-[calc(100vh-11rem)]">
+            <h3 className="app-section-heading">Solicitudes de alumnos</h3>
 
-            {studentRequestsMock.map((req) => (
+            {studentRequestsMock.map((request) => (
               <StudentRequestCard
-                key={req.id}
-                id={req.id}
-                studentName={req.studentName}
-                subject={req.subject}
-                onAccept={() => console.log("Aceptar", req.id)}
-                onReject={() => console.log("Rechazar", req.id)}
+                key={request.id}
+                id={request.id}
+                studentName={request.studentName}
+                subject={request.subject}
+                onAccept={() => console.log("Aceptar", request.id)}
+                onReject={() => console.log("Rechazar", request.id)}
               />
             ))}
           </div>
         </aside>
-
       </div>
     </div>
   );

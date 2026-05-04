@@ -16,29 +16,26 @@ export default function LastStudent({
   rating,
   onClick,
 }: CardStudentProps) {
-  const subjectsPreview = subjects.length > 0 ? subjects.join(", ") : "—";
+  const subjectsPreview = subjects.length > 0 ? subjects.join(", ") : "-";
 
   return (
     <div
       className={`
-        bg-white border border-gray-200 rounded-xl p-4 shadow-sm
-        transition hover:shadow-md hover:bg-gray-50
+        app-card-strong p-4 transition duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]
         ${onClick ? "cursor-pointer" : "cursor-default"}
       `}
       onClick={onClick}
     >
-      {/* Nombre del estudiante */}
-      <h2 className="text-gray-800 font-semibold text-lg">{name}</h2>
+      <h2 className="text-lg font-semibold text-[color:var(--primary)]">{name}</h2>
 
-      {/* Materias */}
-      <p className="text-sm text-gray-600 mt-2">
-        <strong>Materias:</strong> {subjectsPreview}
+      <p className="mt-2 text-sm app-muted">
+        <strong className="font-semibold text-[color:var(--primary)]">Materias:</strong>{" "}
+        {subjectsPreview}
       </p>
 
-      {/* Rating visual con estrellas */}
-      <div className="flex items-center mt-2 gap-2">
+      <div className="mt-3 flex items-center gap-2">
         <RatingStars value={rating} max={5} readonly />
-        <span className="text-sm text-gray-600">{rating} / 5</span>
+        <span className="text-sm app-muted">{rating} / 5</span>
       </div>
     </div>
   );

@@ -1,12 +1,8 @@
 interface Props {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 export default function Card({ children, className = "" }: Props) {
-  return (
-    <div className={`bg-white rounded-xl shadow p-4 ${className}`}>
-      {children}
-    </div>
-  )
+  return <div className={`app-card p-4 ${className}`}>{children}</div>;
 }

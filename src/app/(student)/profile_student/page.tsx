@@ -1,49 +1,38 @@
 "use client";
 
-import ProfileAvatar from "@/components/shared/ProfileAvatar";
-import StudentProfileInfo from "@/components/profile/StudentProfileInfo";
 import StudentData from "@/components/profile/StudentData";
+import StudentProfileInfo from "@/components/profile/StudentProfileInfo";
 import PageHeader from "@/components/shared/PageHeader";
-
-import { studentsMock } from "@/mocks/students.mock";
+import ProfileAvatar from "@/components/shared/ProfileAvatar";
 import { personalDataMocks } from "@/mocks/personal_data.mock";
-
+import { studentsMock } from "@/mocks/students.mock";
 
 export default function ProfileStudent() {
-
   const student = studentsMock[0] ?? null;
 
   if (!student) {
-    return <div>No se encontró el estudiante.</div>;
+    return <div>No se encontro el estudiante.</div>;
   }
 
-  const personalData = personalDataMocks.find(
-    (p) => p.id === student.id
-  );
+  const personalData = personalDataMocks.find((p) => p.id === student.id);
 
   return (
-    <div className="space-y-6 px-4 md:px-8">
+    <div className="app-page">
+      <PageHeader
+        title="Mi perfil"
+        subtitle="Consulta y ajusta tu informacion personal y academica."
+      />
 
-      <section>
-        <PageHeader
-                  title="MI PERFIL"
-                  subtitle="Mi informacion personal y academica"
-                />
-      </section>
-
-      <div className="grid grid-cols-3 gap-6">
-
-        <aside className="col-span-1 space-y-6">
+      <div className="grid items-start gap-6 2xl:grid-cols-[minmax(280px,340px)_minmax(0,1fr)]">
+        <aside className="space-y-6 2xl:sticky 2xl:top-8">
           <ProfileAvatar id={student.id} name={student.name} />
           {personalData && <StudentData data={personalData} />}
         </aside>
 
-        <main className="col-span-2 space-y-6">
+        <main className="min-w-0">
           <StudentProfileInfo student={student} />
         </main>
-
       </div>
-
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import type { Chat } from "@/types/chat";
 import { tutorsMock } from "@/mocks/tutors.mock";
+import type { Chat } from "@/types/chat";
 
 interface ChatIconBarProps {
   chats: Chat[];
@@ -17,28 +17,23 @@ export default function ChatIconBar({
   const currentStudentId = "s1";
 
   return (
-    <div className="flex flex-col gap-3 overflow-y-auto p-3 bg-white border-r h-full">
+    <div className="flex gap-3 overflow-x-auto p-3 lg:h-full lg:flex-col lg:overflow-x-visible lg:overflow-y-auto">
       {chats.map((chat) => {
-        const tutorId = chat.participantIds.find(
-          (id) => id !== currentStudentId
-        );
-
-        const tutor = tutorsMock.find((t) => t.id === tutorId);
+        const tutorId = chat.participantIds.find((id) => id !== currentStudentId);
+        const tutor = tutorsMock.find((item) => item.id === tutorId);
         const name = tutor?.name ?? "Tutor";
-
         const isActive = activeChatId === chat.id;
 
         return (
           <button
             key={chat.id}
+            type="button"
             onClick={() => onSelectChat(chat.id)}
-            className={`w-12 h-12 rounded-full flex items-center justify-center
-              transition
-              ${
-                isActive
-                  ? "bg-amber-300 text-white ring-2 ring-amber-600"
-                  : "bg-gray-200 text-gray-600 hover:bg-gray-300"
-              }`}
+            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-semibold transition ${
+              isActive
+                ? "bg-[color:var(--primary)] text-white shadow-lg shadow-[rgba(38,70,83,0.18)]"
+                : "bg-white text-[color:var(--primary)] hover:bg-[color:var(--surface-accent)]"
+            }`}
             title={name}
           >
             {name.charAt(0)}

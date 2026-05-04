@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { tutorsMock } from "@/mocks/tutors.mock";
 import { subjectsMock } from "@/mocks/subjects.mock";
-
 import SearchHeader from "@/components/search_student/SearchHeader";
 import SearchFilters from "@/components/search_student/SearchFilters";
 import TutorResults from "@/components/search_student/TutorResults";
@@ -20,8 +19,8 @@ export default function SearchStudent() {
 
     const matchesQuery = query
       ? tutor.name.toLowerCase().includes(query.toLowerCase()) ||
-        tutor.subjects.some((s) =>
-          s.toLowerCase().includes(query.toLowerCase())
+        tutor.subjects.some((subject) =>
+          subject.toLowerCase().includes(query.toLowerCase())
         )
       : true;
 
@@ -29,13 +28,11 @@ export default function SearchStudent() {
   });
 
   return (
-    <div className="space-y-6 px-4 md:px-8">
-
+    <div className="app-page">
       <SearchHeader />
 
-      <div className="grid grid-cols-3 gap-6">
-
-        <section className="col-span-2 space-y-6">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+        <section className="min-w-0 space-y-6">
           <SearchFilters
             subjects={subjectsMock}
             query={query}
@@ -47,7 +44,6 @@ export default function SearchStudent() {
         </section>
 
         <TopTutors tutors={tutorsMock} />
-
       </div>
     </div>
   );

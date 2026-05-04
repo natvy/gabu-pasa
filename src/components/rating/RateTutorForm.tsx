@@ -6,7 +6,6 @@ import RatingStars from "@/components/feedback/RatingStars";
 import Button from "@/components/ui/Button";
 
 export default function RateTutorForm() {
-
   const [selectedTutor, setSelectedTutor] = useState("");
   const [comment, setComment] = useState("");
 
@@ -21,18 +20,18 @@ export default function RateTutorForm() {
     { key: "puntualidad", label: "Puntualidad" },
     { key: "materiales", label: "Materiales compartidos" },
     { key: "conocimiento", label: "Conocimiento" },
-    { key: "comunicacion", label: "Comunicación" },
+    { key: "comunicacion", label: "Comunicacion" },
   ];
 
   const handleRatingChange = (key: string, value: number) => {
-    setRatings(prev => ({
+    setRatings((prev) => ({
       ...prev,
-      [key]: value
+      [key]: value,
     }));
   };
 
   const handleSubmit = () => {
-    const allRated = Object.values(ratings).every(r => r > 0);
+    const allRated = Object.values(ratings).every((rating) => rating > 0);
 
     if (!selectedTutor) {
       alert("Debes seleccionar un tutor.");
@@ -40,7 +39,7 @@ export default function RateTutorForm() {
     }
 
     if (!allRated) {
-      alert("Debes calificar todas las categorías.");
+      alert("Debes calificar todas las categorias.");
       return;
     }
 
@@ -56,10 +55,9 @@ export default function RateTutorForm() {
 
   return (
     <div className="space-y-8">
-
-      <section className="bg-white p-4 rounded-xl shadow text-gray-500">
+      <section className="app-card p-4 md:p-5">
         <select
-          className="w-full p-3 border rounded-lg"
+          className="app-field"
           value={selectedTutor}
           onChange={(e) => setSelectedTutor(e.target.value)}
         >
@@ -72,33 +70,28 @@ export default function RateTutorForm() {
         </select>
       </section>
 
-      <section className="grid grid-cols-2 gap-6">
-        {ratingSections.map(section => (
-          <div
-            key={section.key}
-            className="bg-blue-100 p-6 rounded-xl space-y-4"
-          >
-            <h3 className="font-semibold text-gray-800">
+      <section className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {ratingSections.map((section) => (
+          <div key={section.key} className="app-card-soft space-y-4 p-6">
+            <h3 className="font-semibold text-[color:var(--primary-strong)]">
               {section.label}
             </h3>
 
             <RatingStars
               value={ratings[section.key as keyof typeof ratings]}
-              onChange={(value) =>
-                handleRatingChange(section.key, value)
-              }
+              onChange={(value) => handleRatingChange(section.key, value)}
             />
           </div>
         ))}
       </section>
 
-      <section className="space-y-2">
-        <h3 className="font-semibold text-gray-800">
+      <section className="app-card space-y-3 p-5">
+        <h3 className="font-semibold text-[color:var(--primary-strong)]">
           Deja un comentario
         </h3>
 
         <textarea
-          className="text-gray-600 w-full p-4 border rounded-xl resize-none"
+          className="app-field min-h-[140px] resize-y"
           rows={4}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
@@ -107,11 +100,8 @@ export default function RateTutorForm() {
       </section>
 
       <div className="flex">
-        <Button onClick={handleSubmit}>
-          Enviar
-        </Button>
+        <Button onClick={handleSubmit}>Enviar</Button>
       </div>
-
     </div>
   );
 }

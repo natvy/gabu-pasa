@@ -13,33 +13,27 @@ export default function SolicitudesTutor({
   onManage,
 }: SolicitudesTutorProps) {
   return (
-    <div className="bg-white p-6 rounded-xl shadow text-gray-800 grid grid-cols-2">
-
-      {/* Mitad izquierda */}
-      <div className="flex flex-col items-center justify-center text-center gap-3">
-        <h2 className="text-sm text-gray-500 font-semibold">
-          Solicitudes pendientes de alumnado
+    <div className="app-card grid gap-6 p-6 md:grid-cols-2">
+      <div className="flex flex-col items-start justify-center gap-3">
+        <span className="app-badge">Seguimiento</span>
+        <h2 className="app-title text-xl font-semibold">
+          Solicitudes pendientes del alumnado
         </h2>
-
-        <span className="text-5xl font-bold">{count}</span>
-
-        <Button
-          onClick={onManage}
-          className="text-sm px-3 py-1"
-        >
+        <span className="text-5xl font-semibold tracking-tight text-[color:var(--primary)]">
+          {count}
+        </span>
+        <Button onClick={onManage} className="text-sm">
           Administrar solicitudes
         </Button>
       </div>
 
-      {/* Mitad derecha */}
-      <div className="flex flex-col items-center justify-center text-center gap-3">
-        <p className="text-sm text-gray-500 font-semibold">
-          Puntos para recompensa
+      <div className="app-card-soft flex flex-col items-center justify-center gap-3 p-5 text-center">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--secondary)]">
+          Recompensas
         </p>
-
+        <p className="text-sm app-muted">Avance actual hacia el siguiente beneficio</p>
         <ProgressCircle value={7} max={10} />
       </div>
-
     </div>
   );
 }

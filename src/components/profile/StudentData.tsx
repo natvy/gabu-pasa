@@ -1,7 +1,7 @@
 "use client";
 
-import type { PersonalData } from "@/types/personal_data";
 import Button from "../ui/Button";
+import type { PersonalData } from "@/types/personal_data";
 
 interface StudentDataProps {
   data: PersonalData;
@@ -10,45 +10,45 @@ interface StudentDataProps {
 
 export default function StudentData({ data, onEdit }: StudentDataProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 space-y-6">
-      <h3 className="text-lg font-semibold text-gray-800 border-b pb-3">
-        Datos Académicos y de Contacto
+    <div className="app-card-strong space-y-6 p-6">
+      <h3 className="border-b border-[color:var(--border)] pb-3 text-lg font-semibold text-[color:var(--primary-strong)]">
+        Datos academicos y de contacto
       </h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+      <div className="grid gap-5 text-sm text-[color:var(--foreground)] sm:grid-cols-2 xl:grid-cols-1">
         <div className="space-y-1">
-          <p className="text-gray-500">Correo</p>
-          <p className="font-medium break-words">{data.correo ?? "—"}</p>
+          <p className="app-muted">Correo</p>
+          <p className="break-words font-medium">{data.correo ?? "-"}</p>
         </div>
 
         <div className="space-y-1">
-          <p className="text-gray-500">Teléfono</p>
-          <p className="font-medium">{data.telefono ?? "—"}</p>
+          <p className="app-muted">Telefono</p>
+          <p className="font-medium">{data.telefono ?? "-"}</p>
         </div>
 
         <div className="space-y-1">
-          <p className="text-gray-500">Semestre</p>
-          <p className="font-medium">{data.semestre ?? "—"}</p>
+          <p className="app-muted">Semestre</p>
+          <p className="font-medium">{data.semestre ?? "-"}</p>
         </div>
 
         <div className="space-y-1">
-          <p className="text-gray-500">Carrera</p>
-          <p className="font-medium">{data.carrera ?? "—"}</p>
+          <p className="app-muted">Carrera</p>
+          <p className="font-medium">{data.carrera ?? "-"}</p>
         </div>
       </div>
 
-      <div className="pt-4 border-t text-xs text-gray-400">
-        ID interno: {data.id ?? "—"}
+      <div className="border-t border-[color:var(--border)] pt-4 text-xs app-muted">
+        ID interno: {data.id ?? "-"}
       </div>
 
-      <div className="pt-6 border-t flex justify-end">
+      <div className="border-t border-[color:var(--border)] pt-6">
         <Button
           variant="primary"
           size="md"
-          className="shadow-sm"
+          className="w-full justify-center"
           onClick={onEdit}
         >
-          Actualizar información
+          Actualizar informacion
         </Button>
       </div>
     </div>

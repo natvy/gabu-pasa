@@ -6,7 +6,7 @@ import Button from "../ui/Button";
 interface ProfileAvatarProps {
   id: string;
   name: string;
-  photoUrl?: string; // opcional porque tus mocks no la tienen
+  photoUrl?: string;
 }
 
 export default function ProfileAvatar({
@@ -21,40 +21,41 @@ export default function ProfileAvatar({
     .toUpperCase();
 
   return (
-    <div className="w-90 rounded-2xl shadow-md border bg-white p-6 flex flex-col items-center gap-4 hover:shadow-lg transition-shadow">
-      <div className="relative w-24 h-24">
-        {/* Imagen circular */}
-        <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center text-2xl font-semibold text-gray-600">
-          {photoUrl ? (
-            <Image
-              src={photoUrl}
-              alt={name}
-              width={96}
-              height={96}
-              className="object-cover w-full h-full"
-            />
-          ) : (
-            <span>{initials}</span>
-          )}
+    <div className="app-card-strong w-full p-6">
+      <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left xl:flex-col xl:text-center">
+        <div className="relative shrink-0">
+          <div className="flex h-28 w-28 items-center justify-center overflow-hidden rounded-full bg-[color:var(--primary-soft)] text-3xl font-semibold text-[color:var(--primary)]">
+            {photoUrl ? (
+              <Image
+                src={photoUrl}
+                alt={name}
+                width={112}
+                height={112}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <span>{initials}</span>
+            )}
+          </div>
+
+          <div className="absolute bottom-1 right-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="rounded-full bg-white px-2 py-1 text-xs shadow-md"
+              onClick={() => console.log("Cambiar foto")}
+            >
+              Editar
+            </Button>
+          </div>
         </div>
 
-        {/* Botón cambiar foto */}
-        <div className="absolute bottom-0 right-0">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="rounded-full bg-white shadow-md hover:bg-gray-100 px-2 py-1 text-xs"
-            onClick={() => console.log("Cambiar foto")}
-          >
-            ✎
-          </Button>
+        <div className="min-w-0 flex-1">
+          <p className="text-xl font-semibold text-[color:var(--primary-strong)]">
+            {name}
+          </p>
+          <p className="mt-1 break-words text-sm app-muted">{id}</p>
         </div>
-      </div>
-
-      {/* Info */}
-      <div className="text-center">
-        <p className="text-lg font-semibold">{name}</p>
-        <p className="text-sm text-gray-500">{id}</p>
       </div>
     </div>
   );

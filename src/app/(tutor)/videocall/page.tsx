@@ -10,39 +10,35 @@ export default function Page() {
   const [selectedStudent, setSelectedStudent] = useState<string>("");
 
   return (
-    <div className="space-y-8 px-4 md:px-8">
-      {/* HEADERe */}
-      <section>
-        <PageHeader
-                  title="LLAMADAS"
-                  subtitle="Inicia clases online a traves de una videollamada."
-                /> 
-      </section>
+    <div className="app-page">
+      <PageHeader
+        title="LLAMADAS"
+        subtitle="Inicia clases online a traves de una videollamada."
+      />
 
-      {/* SELECCIÓN DE ESTUDIANTE */}
-      <section className="bg-white p-4 rounded-xl shadow text-gray-500 ">
+      <section className="app-card space-y-5 p-5">
         <select
-          className="w-full p-3 border rounded-lg mb-6"
+          className="app-field"
           value={selectedStudent}
           onChange={(e) => setSelectedStudent(e.target.value)}
         >
-          <option value="">Escoge Estudiante</option>
+          <option value="">Escoge estudiante</option>
           {studentsMock.map((student) => (
             <option key={student.id} value={student.id}>
               {student.name}
             </option>
           ))}
         </select>
-        {/* BOTÓN DE VIDEOLLAMADA */}
 
-        <Button disabled={!selectedStudent}>Iniciar videollamada</Button>
+        <Button disabled={!selectedStudent} className="w-full sm:w-auto">
+          Iniciar videollamada
+        </Button>
       </section>
 
-      {/*HISTORIAL DE LLAMADAS*/}
-      <section className="bg-white p-4 rounded-xl shadow text-gray-500">
-        <h1 className="text-2xl font-semibold text-gray-900">
+      <section className="app-card space-y-4 p-5">
+        <h2 className="app-title text-2xl font-semibold">
           Historial de llamadas
-        </h1>
+        </h2>
         <CallHistory />
       </section>
     </div>

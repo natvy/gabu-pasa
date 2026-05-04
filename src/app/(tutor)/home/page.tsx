@@ -1,68 +1,60 @@
 "use client";
 
-import TutorRatingStars from "@/components/feedback/TutorRatingStars";
-import CalendarWrapper from "@/components/calendar/CalendarWrapper";
-import { tutorSessionsMock } from "@/mocks/tutorSessions.mock";
-import { studentsMock } from "@/mocks/students.mock";
 import LastStudent from "@/components/cards/LastStudent";
+import CalendarWrapper from "@/components/calendar/CalendarWrapper";
+import TutorRatingStars from "@/components/feedback/TutorRatingStars";
 import SolicitudesTutor from "@/components/feedback/SolicitudesTutor";
 import PageHeader from "@/components/shared/PageHeader";
+import { studentsMock } from "@/mocks/students.mock";
+import { tutorSessionsMock } from "@/mocks/tutorSessions.mock";
 
 export default function Page() {
   const recentStudents = studentsMock.slice(0, 4);
 
   return (
-    <div className="space-y-8 px-4 md:px-8">
+    <div className="app-page">
+      <PageHeader
+        title="Dashboard del tutor"
+        subtitle="Resumen general de tus metricas, actividad reciente, tutorias agendadas y solicitudes pendientes."
+      />
 
-      {/* HEADER */}
-      <section>
-        <PageHeader
-          title="DASHBOARD"
-          subtitle="Resumen general de tus métricas, actividades recientes y solicitudes."
-        /> 
-      </section>
-
-      {/* GRID PRINCIPAL RESPONSIVE */}
-      <section className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-
-        {/* LADO IZQUIERDO (3/5) */}
-        <div className="lg:col-span-3 space-y-6">
-
-          {/* CALIFICACIÓN GENERAL */}
-          <div className="bg-white p-6 rounded-xl shadow text-gray-800">
-            <h2 className="text-xl font-bold text-gray-700 mb-2">
-              Su calificación general es: 100%
+      <section className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.95fr)]">
+        <div className="space-y-6">
+          <div className="app-card p-6">
+            <h2 className="app-title mb-2 text-xl font-semibold">
+              Tu calificacion general es de 100%
             </h2>
+            <p className="mb-5 text-sm app-muted">
+              Este panel resume la retroalimentacion recibida por parte del alumnado.
+            </p>
             <TutorRatingStars />
           </div>
 
-          {/* CALENDARIO */}
-          <div className="bg-white p-6 rounded-xl shadow text-gray-800">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-              Tutorías Programadas
+          <div className="app-card p-6">
+            <h2 className="app-title mb-4 text-2xl font-semibold">
+              Tutorias programadas
             </h2>
             {tutorSessionsMock.length === 0 ? (
-              <p className="text-gray-400 text-sm">No hay tutorías programadas.</p>
+              <p className="text-sm app-muted">No hay tutorias programadas.</p>
             ) : (
               <CalendarWrapper events={tutorSessionsMock} />
             )}
           </div>
-
         </div>
 
-        {/* LADO DERECHO (2/5) */}
-        <div className="lg:col-span-2 space-y-6">
-
-          {/* ALUMNOS RECIENTES */}
-          <div className="bg-white p-6 rounded-xl shadow text-gray-800">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">
-              Alumnos recientes
-            </h2>
+        <div className="space-y-6">
+          <div className="app-card-soft p-6">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h2 className="app-title text-lg font-semibold">Alumnos recientes</h2>
+              <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-[color:var(--secondary)]">
+                {recentStudents.length} activos
+              </span>
+            </div>
 
             {recentStudents.length === 0 ? (
-              <p className="text-gray-400 text-sm">No hay alumnos recientes.</p>
+              <p className="text-sm app-muted">No hay alumnos recientes.</p>
             ) : (
-              <div className="space-y-4 max-h-64 overflow-y-auto pr-2">
+              <div className="app-scrollbar max-h-72 space-y-4 overflow-y-auto pr-2">
                 {recentStudents.map((student) => (
                   <LastStudent
                     key={student.id}
@@ -76,14 +68,11 @@ export default function Page() {
             )}
           </div>
 
-          {/* SOLICITUDES */}
           <SolicitudesTutor
             count={5}
             onManage={() => console.log("Administrar solicitudes")}
           />
-
         </div>
-
       </section>
     </div>
   );

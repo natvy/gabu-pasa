@@ -1,137 +1,107 @@
 "use client";
 
-import type { Student } from "@/types/student";
-import Button from "../ui/Button";
 import RatingStars from "../feedback/RatingStars";
+import Button from "../ui/Button";
+import type { Student } from "@/types/student";
 
 interface StudentProfileInfoProps {
   student: Student;
-  
 }
 
-export default function StudentProfileInfo({ student }: StudentProfileInfoProps) {
+export default function StudentProfileInfo({
+  student,
+}: StudentProfileInfoProps) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 space-y-6">
-
-      {/* Header */}
-      <div className="flex justify-between items-center border-b pb-4">
-
-        <div className="flex items-center gap-3">
-
-          {/* avatar */}
-          <div className="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-semibold text-blue-800">
+    <div className="app-card-strong space-y-6 p-6">
+      <div className="flex flex-col gap-4 border-b border-[color:var(--border)] pb-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex min-w-0 items-center gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[color:var(--primary-soft)] font-semibold text-[color:var(--primary)]">
             {student.name.charAt(0)}
           </div>
 
-          <div>
-            <h2 className="text-xl font-semibold text-gray-800">
+          <div className="min-w-0">
+            <h2 className="truncate text-xl font-semibold text-[color:var(--primary-strong)]">
               {student.name}
             </h2>
-
-            <p className="text-sm text-gray-500">
-              {student.level}
-            </p>
+            <p className="mt-1 text-sm app-muted">{student.level}</p>
           </div>
-
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <RatingStars value={student.rating ?? 0} readonly />
-          <span className="text-sm font-medium text-gray-600">
-            {student.rating}/5
-          </span>
+          <span className="text-sm app-muted">{student.rating}/5</span>
         </div>
-
       </div>
 
-      {/* Content */}
-      <div className="grid grid-cols-2 gap-6 text-gray-800">
-
-        {/* Necesidades */}
-        <div>
-
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+      <div className="grid gap-6 lg:grid-cols-2">
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-[color:var(--primary)]">
               Necesidades
             </h3>
 
             <Button
               variant="ghost"
               size="sm"
-              className="text-xs px-2 py-1"
+              className="text-xs"
               onClick={() => console.log("Editar necesidades")}
             >
-              Editar ✎
+              Editar
             </Button>
           </div>
 
           <div className="flex flex-wrap gap-2">
-
             {student.needs.length === 0 && (
-              <span className="text-xs text-gray-400">
-                Sin necesidades registradas
-              </span>
+              <span className="text-xs app-muted">Sin necesidades registradas</span>
             )}
 
             {student.needs.map((need, index) => (
               <span
                 key={index}
-                className="text-xs px-3 py-1 bg-gray-100 text-gray-700 rounded-full"
+                className="rounded-full bg-[color:var(--surface-soft)] px-3 py-1 text-xs text-[color:var(--foreground)]"
               >
                 {need}
               </span>
             ))}
-
           </div>
-
         </div>
 
-        {/* Intereses */}
-        <div>
-
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-[color:var(--primary)]">
               Intereses
             </h3>
 
             <Button
               variant="ghost"
               size="sm"
-              className="text-xs px-2 py-1"
+              className="text-xs"
               onClick={() => console.log("Editar intereses")}
             >
-              Editar ✎
+              Editar
             </Button>
           </div>
 
           <div className="flex flex-wrap gap-2">
-
             {student.interests.length === 0 && (
-              <span className="text-xs text-gray-400">
-                Sin intereses registrados
-              </span>
+              <span className="text-xs app-muted">Sin intereses registrados</span>
             )}
 
             {student.interests.map((interest, index) => (
               <span
                 key={index}
-                className="text-xs px-3 py-1 bg-gray-100 text-gray-700 rounded-full"
+                className="rounded-full bg-[color:var(--surface-soft)] px-3 py-1 text-xs text-[color:var(--foreground)]"
               >
                 {interest}
               </span>
             ))}
-
           </div>
-
         </div>
-
       </div>
 
-      {/* ID técnico discreto */}
-      <div className="pt-4 border-t text-xs text-gray-400">
+      <div className="border-t border-[color:var(--border)] pt-4 text-xs app-muted">
         ID: {student.id}
       </div>
-
     </div>
   );
 }

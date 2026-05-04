@@ -1,20 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { chatsMock } from "@/mocks/chats.mock";
 import ChatListHorizontal from "@/components/chats/ChatListHorizontal";
 import ChatWindow from "@/components/chats/ChatWindow";
+import { chatsMock } from "@/mocks/chats.mock";
 
 export default function ChatSection() {
-  const [activeChatId, setActiveChatId] = useState<string | null>(null);
+  const [activeChatId, setActiveChatId] = useState<string | null>(chatsMock[0]?.id ?? null);
 
-  const activeChat = chatsMock.find(chat => chat.id === activeChatId);
+  const activeChat = chatsMock.find((chat) => chat.id === activeChatId);
 
   return (
-    <div className="flex gap-4 bg-white p-5 rounded-xl shadow h-[420px]">
-
-      {/* lista de chats */}
-      <div className="w-20 border-r  overflow-y-auto">
+    <div className="app-card flex h-auto flex-col gap-4 p-5 lg:h-[440px] lg:flex-row">
+      <div className="app-scrollbar rounded-[1.25rem] border border-[color:var(--border)] bg-white/55 lg:w-24 lg:overflow-y-auto">
         <ChatListHorizontal
           chats={chatsMock}
           activeChatId={activeChatId}
@@ -22,14 +20,9 @@ export default function ChatSection() {
         />
       </div>
 
-      {/* ventana de chat */}
-      <section className="flex-1 text-gray-800">
-        <ChatWindow
-          chat={activeChat}
-          currentUserId="student-user-id"
-        />
+      <section className="min-h-[320px] flex-1 overflow-hidden rounded-[1.25rem] border border-[color:var(--border)] bg-white/65">
+        <ChatWindow chat={activeChat} currentUserId="student-user-id" />
       </section>
-
     </div>
   );
 }

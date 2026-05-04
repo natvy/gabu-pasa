@@ -1,16 +1,3 @@
-// src/components/calendar/CalendarWrapper.tsx
-// Este es un componente de envoltura para un calendario.
-// Acepta una lista de eventos, cada uno con un título, 
-// fecha de inicio y fecha de fin.
-
-// Cada evento se muestra en el calendario según sus fechas,
-// y el título se muestra dentro del evento. Este componente
-// puede ser utilizado para mostrar eventos como clases, 
-// tutorías o cualquier otro tipo de evento programado.
-
-// Luego mejor le ponemos React Big Calendar
-// src/components/calendar/CalendarWrapper.tsx
-
 interface CalendarEvent {
   title: string;
   start: Date;
@@ -23,45 +10,34 @@ interface CalendarWrapperProps {
 
 export default function CalendarWrapper({ events }: CalendarWrapperProps) {
   return (
-    <div className="bg-amber-300 border border-gray-200 rounded-xl p-6 shadow-sm">
+    <div className="app-card-soft p-6">
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <div>
+          <h2 className="app-title text-lg font-semibold">Calendario</h2>
+          <p className="mt-1 text-sm app-muted">Sesiones y eventos programados</p>
+        </div>
 
-      {/* header */}
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-800">
-          Calendario
-        </h2>
-
-        <span className="text-sm text-gray-500">
+        <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-[color:var(--secondary)]">
           {events.length} eventos
         </span>
       </div>
 
-      {/* lista de eventos */}
       <div className="space-y-3">
-
         {events.length === 0 && (
-          <p className="text-sm text-gray-500">
-            No hay eventos programados
-          </p>
+          <p className="text-sm app-muted">No hay eventos programados.</p>
         )}
 
         {events.map((event, index) => (
           <div
             key={index}
-            className="border border-gray-100 rounded-lg p-4 transition hover:shadow-sm hover:bg-gray-50 bg-white"
+            className="rounded-2xl border border-white/70 bg-white/80 p-4 transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]"
           >
-
-            <p className="font-medium text-gray-800">
-              {event.title}
+            <p className="font-medium text-[color:var(--primary)]">{event.title}</p>
+            <p className="mt-1 text-xs app-muted">
+              {event.start.toLocaleString()} - {event.end.toLocaleString()}
             </p>
-
-            <p className="text-xs text-gray-500 mt-1">
-              {event.start.toLocaleString()} — {event.end.toLocaleString()}
-            </p>
-
           </div>
         ))}
-
       </div>
     </div>
   );

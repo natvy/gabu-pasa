@@ -9,8 +9,8 @@ type Props = {
 
 export default function FilesGrid({ files, tutors }: Props) {
   return (
-    <section className="bg-white p-4 rounded-xl shadow text-gray-700">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <section className="app-card p-4 md:p-5">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 2xl:grid-cols-3">
         {files.map((file) => (
           <FileCard key={file.id} file={file} tutors={tutors} />
         ))}

@@ -1,5 +1,3 @@
-// src/components/cards/CardTutor.tsx
-
 import Button from "../ui/Button";
 import RatingStars from "../feedback/RatingStars";
 
@@ -23,52 +21,45 @@ export default function CardTutor({
     <div
       onClick={onClick}
       className={`
-        bg-white rounded-xl shadow-sm border border-gray-200
-        p-6 transition hover:shadow-md hover:-translate-y-1
+        app-card h-full rounded-[1.5rem] p-5 transition hover:-translate-y-1 hover:shadow-[var(--shadow)]
         ${onClick ? "cursor-pointer" : ""}
       `}
     >
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-4">
-
-        {/* avatar */}
-        <div className="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center font-semibold text-blue-800">
+      <div className="mb-4 flex items-center gap-4">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[color:var(--primary-soft)] font-semibold text-[color:var(--primary)]">
           {name.charAt(0)}
         </div>
 
         <div>
-          <h2 className="font-semibold text-lg text-gray-800">{name}</h2>
+          <h2 className="text-lg font-semibold text-[color:var(--primary-strong)]">
+            {name}
+          </h2>
 
           <div className="flex items-center gap-2">
             <RatingStars value={rating} readonly />
-            <span className="text-sm text-gray-500">{rating}/5</span>
+            <span className="text-sm app-muted">{rating}/5</span>
           </div>
         </div>
       </div>
 
-      {/* description */}
-      <p className="text-gray-600 text-sm mb-4">
-        {description}
-      </p>
+      <p className="mb-4 text-sm app-muted">{description}</p>
 
-      {/* subjects */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="mb-6 flex flex-wrap gap-2">
         {subjects.map((subject) => (
           <span
             key={subject}
-            className="text-xs px-3 py-1 bg-blue-100 text-blue-700 rounded-full"
+            className="rounded-full bg-[color:var(--accent-soft)] px-3 py-1 text-xs text-[color:var(--accent)]"
           >
             {subject}
           </span>
         ))}
       </div>
 
-      {/* button */}
-      <div className="pt-4 border-t flex justify-center">
+      <div className="flex justify-center border-t border-[color:var(--border)] pt-4">
         <Button
           variant="primary"
           size="sm"
-          className="shadow-sm"
+          className="shadow-sm sm:w-auto"
           onClick={() => console.log("Enviar Solicitud")}
         >
           Enviar solicitud

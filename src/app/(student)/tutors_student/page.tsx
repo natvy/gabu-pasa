@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { tutorsMock } from "@/mocks/tutors.mock";
 import { subjectsMock } from "@/mocks/subjects.mock";
-
 import TutorsHeader from "@/components/tutors/TutorsHeader";
 import TutorsFilters from "@/components/tutors/TutorsFilters";
 import TutorsGrid from "@/components/tutors/TutorsGrid";
@@ -19,8 +18,8 @@ export default function StudentTutors() {
 
     const matchesQuery = query
       ? tutor.name.toLowerCase().includes(query.toLowerCase()) ||
-        tutor.subjects.some((s) =>
-          s.toLowerCase().includes(query.toLowerCase())
+        tutor.subjects.some((subject) =>
+          subject.toLowerCase().includes(query.toLowerCase())
         )
       : true;
 
@@ -28,8 +27,7 @@ export default function StudentTutors() {
   });
 
   return (
-    <div className="space-y-10 px-4 md:px-8">
-
+    <div className="app-page">
       <TutorsHeader />
 
       <TutorsFilters
@@ -40,7 +38,6 @@ export default function StudentTutors() {
       />
 
       <TutorsGrid tutors={filteredTutors} />
-
     </div>
   );
 }

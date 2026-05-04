@@ -8,25 +8,17 @@ interface Props {
 export default function TutorsGrid({ tutors }: Props) {
   return (
     <section>
+      <h2 className="app-section-heading mb-4">Resultados</h2>
 
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">
-        Resultados
-      </h2>
-
-      <div className="text-gray-800 grid grid-cols-2 gap-4">
-
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         {tutors.length > 0 ? (
-          tutors.map((tutor) => (
-            <CardTutor key={tutor.id} {...tutor} />
-          ))
+          tutors.map((tutor) => <CardTutor key={tutor.id} {...tutor} />)
         ) : (
-          <div className="bg-white p-6 rounded-xl shadow text-gray-800">
+          <div className="app-card p-6 text-sm app-muted md:col-span-2 xl:col-span-3">
             No se encontraron tutores con esos criterios.
           </div>
         )}
-
       </div>
-
     </section>
   );
 }

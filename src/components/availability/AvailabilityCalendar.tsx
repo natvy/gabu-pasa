@@ -8,7 +8,7 @@ export default function AvailabilityCalendar() {
   const [date, setDate] = useState<Date | null>(new Date());
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow-md">
+    <div className="app-card p-4 md:p-6">
       <Calendar onChange={(value) => setDate(value as Date)} value={date} />
     </div>
   );

@@ -2,21 +2,18 @@
 
 import { useState } from "react";
 import { chatsMock } from "@/mocks/chats.mock";
-
 import ProfileCard from "@/components/chats/ProfileCard";
 import ChatList from "@/components/chats/ChatList";
 import ChatWindow from "@/components/chats/ChatWindow";
 
 export default function ChatPanel() {
-
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
 
-  const activeChat = chatsMock.find(chat => chat.id === activeChatId);
+  const activeChat = chatsMock.find((chat) => chat.id === activeChatId);
 
   return (
-    <div className="grid grid-cols-3 gap-6 h-[80vh]">
-
-      <aside className="col-span-1 bg-white rounded-xl shadow flex flex-col">
+    <div className="grid min-h-[calc(100vh-16rem)] grid-cols-1 gap-6 xl:grid-cols-[minmax(320px,360px)_minmax(0,1fr)]">
+      <aside className="app-card-strong flex min-h-[420px] flex-col overflow-hidden">
         <ProfileCard />
 
         <ChatList
@@ -26,13 +23,9 @@ export default function ChatPanel() {
         />
       </aside>
 
-      <section className="col-span-2 bg-white rounded-xl shadow text-gray-800">
-        <ChatWindow
-          chat={activeChat}
-          currentUserId="student-user-id"
-        />
+      <section className="app-card-strong min-h-[420px] overflow-hidden">
+        <ChatWindow chat={activeChat} currentUserId="student-user-id" />
       </section>
-
     </div>
   );
 }

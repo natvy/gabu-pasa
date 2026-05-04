@@ -1,10 +1,4 @@
 "use client";
-// src/components/cards/FileCard.tsx
-// Este es un componente de tarjeta para mostrar información
-// de un archivo. Acepta props como name, type, previewUrl y 
-// uploadedBy.
-
-"use client";
 
 import type { AcademicFile } from "@/types/file";
 import type { Tutor } from "@/types/tutor";
@@ -15,7 +9,7 @@ interface FileCardProps {
 }
 
 export default function FileCard({ file, tutors }: FileCardProps) {
-  const tutor = tutors.find((t) => t.id === file.uploadedBy);
+  const tutor = tutors.find((item) => item.id === file.uploadedBy);
 
   const getFileIcon = () => {
     switch (file.type) {
@@ -29,22 +23,19 @@ export default function FileCard({ file, tutors }: FileCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden">
-      
-      {/* Vista previa */}
-      <div className="h-40 bg-gray-100 flex items-center justify-center text-5xl">
+    <div className="app-card h-full overflow-hidden rounded-[1.5rem] transition duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow)]">
+      <div className="flex h-40 items-center justify-center bg-[color:var(--primary-soft)]/60 text-5xl">
         {getFileIcon()}
       </div>
 
-      {/* Información */}
-      <div className="p-4 space-y-2">
-        <h3 className="text-sm font-semibold text-gray-800 line-clamp-2">
+      <div className="space-y-2 p-4">
+        <h3 className="line-clamp-2 text-sm font-semibold text-[color:var(--primary-strong)]">
           {file.name}
         </h3>
 
-        <p className="text-xs text-gray-500">
+        <p className="text-xs app-muted">
           Subido por:{" "}
-          <span className="font-medium text-gray-700">
+          <span className="font-medium text-[color:var(--foreground)]">
             {tutor ? tutor.name : "Autor desconocido"}
           </span>
         </p>

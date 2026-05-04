@@ -1,8 +1,8 @@
 "use client";
 
-import type { Tutor } from "@/types/tutor";
-import Button from "../ui/Button";
 import RatingStars from "../feedback/RatingStars";
+import Button from "../ui/Button";
+import type { Tutor } from "@/types/tutor";
 
 interface TutorProfileInfoProps {
   tutor: Tutor;
@@ -10,79 +10,83 @@ interface TutorProfileInfoProps {
 
 export default function TutorProfileInfo({ tutor }: TutorProfileInfoProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 space-y-6">
-      
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 gap-3">
-        <div>
-          <h2 className="text-xl font-semibold text-gray-800">{tutor.name}</h2>
-          <p className="text-sm text-gray-500">{tutor.educationLevel}</p>
+    <div className="app-card-strong space-y-6 p-6">
+      <div className="flex flex-col gap-4 border-b border-[color:var(--border)] pb-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="min-w-0">
+          <h2 className="text-xl font-semibold text-[color:var(--primary-strong)]">
+            {tutor.name}
+          </h2>
+          <p className="mt-1 text-sm app-muted">{tutor.educationLevel}</p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <RatingStars value={tutor.rating ?? 0} readonly />
-          <span className="text-sm text-gray-500">{tutor.rating ?? 0}/5</span>
+          <span className="text-sm app-muted">{tutor.rating ?? 0}/5</span>
         </div>
       </div>
 
-      {/* Descripción */}
-      <p className="text-gray-600 text-sm">{tutor.description}</p>
+      <p className="text-sm leading-7 app-muted">{tutor.description}</p>
 
-      {/* Materias y habilidades */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-800">
-
-        {/* Materias */}
-        <div>
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Materias</h3>
+      <div className="grid gap-6 lg:grid-cols-2">
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-[color:var(--primary)]">
+              Materias
+            </h3>
             <Button
               variant="ghost"
               size="sm"
-              className="text-xs px-2 py-1"
+              className="text-xs"
               onClick={() => console.log("Editar materias")}
             >
-              Editar ✎
+              Editar
             </Button>
           </div>
+
           <ul className="space-y-2">
             {tutor.subjects.map((subject, index) => (
-              <li key={index} className="bg-gray-100 text-sm px-3 py-2 rounded-lg">
+              <li
+                key={index}
+                className="rounded-xl bg-[color:var(--surface-soft)] px-3 py-2 text-sm text-[color:var(--foreground)]"
+              >
                 {subject}
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Habilidades */}
-        <div>
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Habilidades</h3>
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-[color:var(--primary)]">
+              Habilidades
+            </h3>
             <Button
               variant="ghost"
               size="sm"
-              className="text-xs px-2 py-1"
+              className="text-xs"
               onClick={() => console.log("Editar habilidades")}
             >
-              Editar ✎
+              Editar
             </Button>
           </div>
+
           <ul className="space-y-2">
             {tutor.skills.map((skill, index) => (
               <li
                 key={index}
-                className="bg-gray-100 text-sm px-3 py-2 rounded-lg flex justify-between"
+                className="flex items-center justify-between gap-3 rounded-xl bg-[color:var(--surface-soft)] px-3 py-2 text-sm text-[color:var(--foreground)]"
               >
                 <span>{skill.name}</span>
-                <span className="text-gray-500 text-xs">{skill.level}%</span>
+                <span className="shrink-0 text-xs app-muted">{skill.level}%</span>
               </li>
             ))}
           </ul>
         </div>
-
       </div>
 
-      {/* ID técnico */}
-      <div className="pt-4 border-t text-xs text-gray-400">ID: {tutor.id}</div>
+      <div className="border-t border-[color:var(--border)] pt-4 text-xs app-muted">
+        ID: {tutor.id}
+      </div>
     </div>
   );
 }

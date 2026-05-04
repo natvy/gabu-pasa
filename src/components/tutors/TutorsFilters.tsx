@@ -14,7 +14,6 @@ export default function TutorsFilters({
   setQuery,
   setSelectedSubject,
 }: Props) {
-
   const subjectFilter = {
     title: "Materias",
     options: subjects.map((subject) => ({
@@ -24,10 +23,8 @@ export default function TutorsFilters({
   };
 
   return (
-    <section className="bg-amber-300 rounded space-y-6">
-
-      <div className="text-gray-800 p-4 rounded-xl shadow space-y-4">
-
+    <section className="app-card-soft p-4 md:p-5">
+      <div className="space-y-4 text-[color:var(--foreground)]">
         <FilterPanel
           filters={[subjectFilter]}
           onChange={(_, value) => setSelectedSubject(value)}
@@ -39,9 +36,7 @@ export default function TutorsFilters({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-
       </div>
-
     </section>
   );
 }

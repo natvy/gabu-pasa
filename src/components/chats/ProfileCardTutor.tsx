@@ -4,22 +4,15 @@ import Button from "@/components/ui/Button";
 
 export default function ProfileCardTutor() {
   return (
-    <div className="p-6 border-b">
+    <div className="border-b border-[color:var(--border)] p-6">
       <div className="flex flex-col items-center gap-4">
-        
-        {/* Avatar */}
-        <div className="w-24 h-24 rounded-full bg-gray-300" />
+        <div className="h-24 w-24 rounded-full bg-[color:var(--primary-soft)]" />
 
-        {/* Nombre */}
-        <h2 className="font-semibold text-gray-800">
+        <h2 className="font-semibold text-[color:var(--primary-strong)]">
           Nombre del tutor
         </h2>
 
-        {/* Botón */}
-        <Button size="sm">
-          Editar
-        </Button>
-
+        <Button size="sm">Editar</Button>
       </div>
     </div>
   );
